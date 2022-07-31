@@ -1,44 +1,92 @@
 class Pokemon:
   """This is the docstring for the pokemon class"""
-  def __init__(self, hitPoints, attack, defense, speed, special, types, moves):
-    self.maxHitPoints = hitPoints
-    self.curHitPoints = hitPoints
-    self.attack = attack
-    self.defense = defense
-    self.speed = speed
-    self.special = special
-    self.types = types
-    self.moves = moves
-    self.status = []
-    
-  def increase_HP(self, delta):
-    """This function increases the hitpoints no higher than max"""
-    if (self.curHitPoints + delta) > self.maxHitPoints:
-      self.curHitPoints = self.maxHitPoints
+  def __init__(self, breed, hitPoints, attack, defense, speed, special, types, moves, name = None):
+    if name is not None:
+      self._name = name
     else:
-      self.curHitPoints += delta
+      self._name = breed
+    self._breed = breed
+    self._maxHitPoints = hitPoints
+    self._curHitPoints = hitPoints
+    self._attack = attack
+    self._defense = defense
+    self._speed = speed
+    self._special = special
+    self._types = types
+    self._moves = moves
+    self._status = []
   
-  def decrease_HP(self, delta):
-    """This function decreases the hitpoints no lower than zero"""
-    if (self.curHitPoints - delta) <= 0:
-      self.curHitPoints = 0
-      self.status = ["fainted"]
-    else:
-      self.curHitPoints -= delta
+  def __repr__(self):
+    return f"{self._name.capitalize() if self._name == self._breed else self._name}{' (a ' + self._breed.capitalize() + ')' if self._name != self._breed else ''} currently has {self._curHitPoints} HP."
   
-  def add_status(self, condition):
-    """This function checks to see if a condition is already applied and 
-    if it is not, then it is applied. If it is, it does nothing."""
-    if condition not in self.status:
-      self.status.append(condition)
+  def get_types(self):
+    return self._types
+  
+  def get_breed(self):
+    return self._breed
+  
+  @property
+  def name(self):
+    return self._name
+  
+  @name.setter
+  def name(self, new_name):
+    self._name = new_name
+  
+  @property
+  def hitPoints(self):
+    return self._curHitPoints
+  
+  @hitPoints.setter
+  def hitPoints(self, delta):
+    self._curHitPoints += delta
     
-  def remove_status(self, condition):
-    """This function checks to see if a condition is applied and then 
-    removes it. If it is not, it does nothing"""
-    if condition in self.status:
-      self.status.remove(condition)
+  @property
+  def attack(self):
+    return self._attack
+  
+  @attack.setter
+  def attack(self, num):
+    if num > 0:
+      self._attack += num
+  
+  @property
+  def defense(self):
+    return self._defense
+  
+  @defense.setter
+  def defense(self, num):
+    if num > 0:
+      self._defense += num
       
-  def use_move(self, move):
-    pass
+  @property
+  def speed(self):
+    return self._speed
   
+  @speed.setter
+  def speed(self, num):
+    if num > 0:
+      self._speed += num
+      
+  @property
+  def special(self):
+    return self._attack
   
+  @special.setter
+  def special(self, num):
+    if num > 0:
+      self._special += num
+
+charmander = Pokemon('charmander', 39, 52, 43, 65, 50, ["fire", None], ["Scratch", "Growl"])
+
+print(charmander.name)
+print(charmander.get_breed())
+print(charmander.get_types())
+print(charmander.hitPoints)
+print(charmander.attack)
+print(charmander.defense)
+print(charmander.speed)
+print(charmander.special)
+print(charmander)
+charmander.name = "Steve"
+print(charmander)
