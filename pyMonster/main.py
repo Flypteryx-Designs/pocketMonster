@@ -70,7 +70,7 @@ class Pokemon:
       
   @property
   def special(self):
-    return self._attack
+    return self._special
   
   @special.setter
   def special(self, num):
@@ -79,14 +79,3 @@ class Pokemon:
 
 charmander = Pokemon('charmander', 39, 52, 43, 65, 50, ["fire", None], ["Scratch", "Growl"])
 
-print(charmander.name)
-print(charmander.get_breed())
-print(charmander.get_types())
-print(charmander.hitPoints)
-print(charmander.attack)
-print(charmander.defense)
-print(charmander.speed)
-print(charmander.special)
-print(charmander)
-charmander.name = "Steve"
-print(charmander)
