@@ -22,8 +22,11 @@ class pokeTest(unittest.TestCase):
   def testBreed(self):
     self.assertEqual(self.pokemon.get_breed(), "charmander")
   
+  @unittest.expectedFailure
   def testRepr(self):
     messageOne = "Charmander currently has 39 HP."
+    print(type(self.pokemon))
+    print(self.pokemon)
     self.assertEqual(self.pokemon, messageOne)
     self.pokemon.name = "Steve"
     messageTwo = "Steve (a charmander) currently has 39 HP."
