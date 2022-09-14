@@ -10,7 +10,7 @@ def PocketMonster(pyType, name=""):
     self.special = pyType.special
     self.speed = pyType.speed
     self.moves = pyType.moves
-    
+    self.outsider = False
   
   def get_name(self):
     return self.name
